@@ -83,7 +83,7 @@ export default class LinkedList {
     let tmp = this.headList;
     let index = 0;
     while (tmp != null) {
-      if (tmp.value === value) return index;
+      if (tmp.value === value) return `Index: ${index}`;
       tmp = tmp.nextNode;
       index++;
     }
