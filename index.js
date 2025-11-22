@@ -6,13 +6,15 @@ class Node {
 }
 
 
-class LinkedList {
+export default class LinkedList {
   constructor() {
     this.headList = null;
   }
 
   append(value) {
-    if (this.headList == null) this.prepend(value); 
+    if (this.headList == null) {
+      this.headList = new Node(value);
+    } 
     else {
       let tmp = this.headList;
       while(tmp.nextNode != null) tmp = tmp.nextNode;
@@ -23,7 +25,7 @@ class LinkedList {
   prepend(value) {
     let tmp = null;
     if (this.headList != null) tmp = this.headList;
-    this.head = new Node(value);
+    this.headList = new Node(value);
     this.headList.nextNode = tmp;
   }
 
@@ -49,13 +51,16 @@ class LinkedList {
 
   at(index) {
     let tmp = this.headList;
+    if (tmp === null) return "List is empty."
     for (let i = 0; i < index; i++) {
+      tmp = tmp.nextNode;
       if (tmp == null) return "There is no item for this index."
     }
     return tmp;
   }
 
   pop() {
+    if (this.headList === null) return;
     let current = this.headList;
     let previous = null;
     while (current.nextNode != null) {
@@ -79,7 +84,7 @@ class LinkedList {
     let index = 0;
     while (tmp != null) {
       if (tmp.value === value) return index;
-      tmp.tmp.nextNode;
+      tmp = tmp.nextNode;
       index++;
     }
     return null
